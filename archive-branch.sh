@@ -31,15 +31,14 @@ fi
 branch=$1
 
 # SOURCE: https://stackoverflow.com/questions/17790123/shell-script-trying-to-validate-if-a-git-tag-exists-in-a-git-repository-in-an
-if git rev-list "archive/$branch".. >/dev/null 2>&1
-then {
+if git rev-list "archive/$branch".. >/dev/null 2>&1; then {
   echo "The tag 'archive/$branch' already exists. Aborting archival."
 } else {
   # SOURCE: https://stackoverflow.com/questions/21151178/shell-script-to-check-if-specified-git-branch-exists
-  if git branch --list $branch; then {
+  if git branch --list $branch >/dev/null; then {
     git tag archive/$branch $branch
     git branch -d $branch
-    echo "The branch '$branch' was archived as the tag 'archive/$branch' and deleted."
+    # echo "The branch '$branch' was archived as the tag 'archive/$branch' and deleted."
   } else {
     echo "No branch '$branch' was found to archive. Aborting archival."
   }
