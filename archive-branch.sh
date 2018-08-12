@@ -16,16 +16,14 @@
 
 NAME="archive-branch.sh"
 
-echo "RandPass Copyright (C) 2018 U8N WXD <cs.temporary@icloud.com>"
-echo "This program comes with ABSOLUTELY NO WARRANTY"
-echo "This is free software, and you are welcome to redistribute it"
-echo "under the conditions of the Affero General Public License."
-echo "License: <http://www.gnu.org/licenses/>"
-echo
-
 if (( $# != 1 )); then {
-  echo "ERROR: Need exactly 1 argument, the branch name."
-  echo "Usage: $NAME [branch_name]"
+  echo "archive-branch Copyright (C) 2018 U8N WXD <cs.temporary@icloud.com>"
+  echo "This program comes with ABSOLUTELY NO WARRANTY"
+  echo "This is free software, and you are welcome to redistribute it"
+  echo "under the conditions of the Affero General Public License."
+  echo "License: <http://www.gnu.org/licenses/>"
+  echo
+  echo "Usage: $NAME branch_name"
   exit 1
 }
 fi
@@ -33,7 +31,8 @@ fi
 branch=$1
 
 # SOURCE: https://stackoverflow.com/questions/17790123/shell-script-trying-to-validate-if-a-git-tag-exists-in-a-git-repository-in-an
-if git rev-list "archive/$branch".. >/dev/null; then {
+if git rev-list "archive/$branch".. >/dev/null 2>&1
+then {
   echo "The tag 'archive/$branch' already exists. Aborting archival."
 } else {
   # SOURCE: https://stackoverflow.com/questions/21151178/shell-script-to-check-if-specified-git-branch-exists
