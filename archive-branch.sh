@@ -37,7 +37,7 @@ if git rev-list "archive/$branch".. >/dev/null 2>&1; then {
   # SOURCE: https://stackoverflow.com/questions/21151178/shell-script-to-check-if-specified-git-branch-exists
   if git branch --list $branch >/dev/null; then {
     git tag archive/$branch $branch
-    git branch -d $branch
+    git branch -d $branch >/dev/null
     # echo "The branch '$branch' was archived as the tag 'archive/$branch' and deleted."
   } else {
     echo "No branch '$branch' was found to archive. Aborting archival."
